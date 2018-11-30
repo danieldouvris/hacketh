@@ -26,6 +26,13 @@ App = {
   },
 
   initContracts: function() {
+    $.getJSON("WCCTokenSale.json", function(wccTokenSale) {
+      App.contracts.WCCTokenSale = TruffleContract(wccTokenSale);
+      App.contracts.WCCTokenSale.setProvider(App.web3Provider);
+      App.contracts.WCCTokenSale.deployed().then(function(wccTokenSale) {
+        console.log("WCC Token Sale Address:", wccTokenSale.address);
+      });
+    }).done(function() {
       $.getJSON("WCCToken.json", function(wccToken) {
         App.contracts.WCCToken = TruffleContract(wccToken);
         App.contracts.WCCToken.setProvider(App.web3Provider);
@@ -36,6 +43,7 @@ App = {
         App.listenForEvents();
         return App.render();
       });
+    })
   },
 
   // Listen for events emitted from the contract
