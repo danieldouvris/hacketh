@@ -26,7 +26,7 @@ App = {
   },
 
   initContracts: function() {
-      $.getJSON("../build/contracts/WCCToken.json", function(wccToken) {
+      $.getJSON("WCCToken.json", function(wccToken) {
         App.contracts.WCCToken = TruffleContract(wccToken);
         App.contracts.WCCToken.setProvider(App.web3Provider);
         App.contracts.WCCToken.deployed().then(function(wccToken) {
