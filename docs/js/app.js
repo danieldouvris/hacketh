@@ -49,7 +49,7 @@ App = {
   // Listen for events emitted from the contract
   listenForEvents: function() {
     App.contracts.WCCTokenSale.deployed().then(function(instance) {
-      instance.Sell({}, {
+      instance.Send({}, {
         fromBlock: 0,
         toBlock: 'latest',
       }).watch(function(error, event) {
@@ -121,7 +121,7 @@ App = {
     }).then(function(result) {
       console.log("Tokens bought...")
       $('form').trigger('reset') // reset number of tokens in form
-      // Wait for Sell event
+      // Wait for Send event
     });
   }
 }
